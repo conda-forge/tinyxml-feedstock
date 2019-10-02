@@ -21,8 +21,8 @@ source:
 
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
+  skip: true  # [win and vc<14]
   run_exports:
     - tinyxml
 
@@ -30,11 +30,12 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake
-    - make
+    - make  # [unix]
 
 test:
   commands:
-    - test -f $PREFIX/lib/lib{{ name }}$SHLIB_EXT
+    - test -f $PREFIX/lib/lib{{ name }}$SHLIB_EXT  # [unix]
+    - if exist %PREFIX%\\Library\\bin\\{{ name }}%SHLIB_EXT% (exit 0) else (exit 1)  # [win]
 
 about:
   home: http://www.grinninglizard.com/tinyxml
