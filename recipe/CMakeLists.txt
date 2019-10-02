@@ -2,13 +2,19 @@
 # This CMakeLists.txt file builds a shared library and provide an install
 # target for tinyxml. This was submitted upstream as
 # https://sourceforge.net/p/tinyxml/patches/66/
-cmake_minimum_required(VERSION 2.4.6)
+cmake_minimum_required(VERSION 3.4)
+project(tinyxml)
 add_definitions(-DTIXML_USE_STL)
 add_library(tinyxml SHARED tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
 set_target_properties(tinyxml PROPERTIES
                       INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/lib)
+set_target_properties(tinyxml PROPERTIES 
+                      WINDOWS_EXPORT_ALL_SYMBOLS 1)
 
-install(TARGETS tinyxml)
+install(TARGETS tinyxml
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin)
 
 install(FILES tinyxml.h
         DESTINATION include)
