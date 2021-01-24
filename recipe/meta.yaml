@@ -17,7 +17,9 @@ source:
       - entity-encoding.patch
   # This adds a CMakeLists.txt file to build a shared library and provide an install target
   # submitted upstream as https://sourceforge.net/p/tinyxml/patches/66/
-  - path: CMakeLists.txt
+  - path: 
+      - CMakeLists.txt
+      - tinyxml.pc.in
 
 
 build:
@@ -35,7 +37,9 @@ requirements:
 test:
   commands:
     - test -f $PREFIX/lib/lib{{ name }}$SHLIB_EXT  # [unix]
+    - test -f $PREFIX/lib/pkgconfig/{{ name }}.pc  # [unix]
     - if exist %PREFIX%\\Library\\bin\\{{ name }}%SHLIB_EXT% (exit 0) else (exit 1)  # [win]
+    - if exist %PREFIX%\\Library\\lib\\pkgconfig\{{ name }}.pc (exit 0) else (exit 1)  # [win]
 
 about:
   home: http://www.grinninglizard.com/tinyxml
