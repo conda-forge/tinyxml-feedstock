@@ -17,9 +17,8 @@ source:
       - entity-encoding.patch
   # This adds a CMakeLists.txt file to build a shared library and provide an install target
   # submitted upstream as https://sourceforge.net/p/tinyxml/patches/66/
-  - path: 
-      - CMakeLists.txt
-      - tinyxml.pc.in
+  - path: CMakeLists.txt
+  - path: tinyxml.pc.in
 
 
 build:
