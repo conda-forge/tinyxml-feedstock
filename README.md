@@ -3,13 +3,13 @@ About tinyxml
 
 Home: http://www.grinninglizard.com/tinyxml
 
-Package license: zlib
+Package license: Zlib
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tinyxml-feedstock/blob/master/LICENSE.txt)
 
 Summary: A simple, small, C++ XML parser that can be easily integrated into other programs
 
-
+Development: https://www.sourceforge.net/projects/tinyxml
 
 Current build status
 ====================
