@@ -18,3 +18,10 @@ install(TARGETS tinyxml
 
 install(FILES tinyxml.h
         DESTINATION include)
+
+configure_file(${CMAKE_CURRENT_LIST_DIR}/tinyxml.pc.in 
+               ${CMAKE_BINARY_DIR}/tinyxml.pc 
+               @ONLY)
+
+install(FILES ${CMAKE_BINARY_DIR}/tinyxml.pc 
+        DESTINATION lib/pkgconfig)
