@@ -18,22 +18,30 @@ source:
       #   originally posted at https://sourceforge.net/p/tinyxml/patches/51/
       - enforce-use-stl.patch
       - entity-encoding.patch
+      # Security fixes from Debian's tinyxml 2.6.2-7 patch stack:
+      # https://sources.debian.org/src/tinyxml/2.6.2-7/debian/patches/
+      - CVE-2021-42260.patch
+      - CVE-2023-34194.patch
   # This adds a CMakeLists.txt file to build a shared library and provide an install target
   # submitted upstream as https://sourceforge.net/p/tinyxml/patches/66/
   - path: CMakeLists.txt
   - path: tinyxml.pc.in
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
+    - ${{ stdlib('c') }}
     - ${{ compiler('cxx') }}
     - cmake
     - if: unix
       then: make
   run_exports:
-    - tinyxml
+    # tinyxml had ABI changes in the patch releases, but anyhow
+    # no upstream happened in decades
+    - ${{ pin_subpackage('tinyxml', upper_bound='x.x.x') }}
+
 
 tests:
   - script:
