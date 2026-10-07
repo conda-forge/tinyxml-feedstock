@@ -1,6 +1,7 @@
 mkdir build
 cd build
-cmake ^
+cmake %CMAKE_ARGS% ^
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
     -G "NMake Makefiles" ^
     -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -D CMAKE_BUILD_TYPE=Release ^
